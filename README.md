@@ -14,7 +14,7 @@ go mod tidy
 
 Two ways to run.
 
-1. move `main` executable file to user directory (~/) main projects directory so don't have to go into this folder to run quick open
+1. move `main` executable file to user directory (~/) or projects directory so don't have to go into this folder to run quick open
 
 xcode:
 
@@ -32,7 +32,7 @@ note: can do `./` instead of `main.go` also
 
 ---
 
-2. move `main.go` and `go.mod` files to user directory (~/) or main projects directory so don't have to go into this folder to run quick open
+2. move `main.go` and `go.mod` files to user directory (~/) or projects directory so don't have to go into this folder to run quick open
 
 xcode:
 
