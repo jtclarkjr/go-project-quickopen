@@ -19,16 +19,14 @@ Two ways to run.
 xcode:
 
 ```bash
-./main xcode /path/to/your/project.xcodeproj
+./main xcode /path/to/your/project
 ```
 
 vscode:
 
 ```bash
-./main vscode /path/to/your/projectFolder/
+./main vscode /path/to/your/project
 ```
-
-note: can do `./` instead of `main.go` also
 
 ---
 
@@ -37,13 +35,11 @@ note: can do `./` instead of `main.go` also
 xcode:
 
 ```bash
-go run main.go xcode /path/to/your/project.xcodeproj
+go run . xcode /path/to/your/project
 ```
 
 vscode:
 
 ```bash
-go run main.go vscode /path/to/your/projectFolder/
+go run . vscode /path/to/your/project
 ```
-
-note: can do instead of `main.go` also
