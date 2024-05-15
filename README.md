@@ -30,7 +30,7 @@ vscode:
 
 ---
 
-2. move `main.go` and `go.mod` files to user directory (~/) or projects directory so don't have to go into this folder to run quick open
+2. move `main.go` file to user directory (~/) or projects directory so don't have to go into this folder to run quick open
 
 xcode:
 
