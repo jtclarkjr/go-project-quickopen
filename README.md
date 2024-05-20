@@ -25,7 +25,7 @@ import (
 )
 
 func main() {
-    err := projectopener.OpenProject("vscode", "/path/to/your/project")
+    err := quickopen.OpenProject("vscode", "/path/to/your/project")
     if err != nil {
         fmt.Printf("Failed to open project: %s\n", err)
     }
