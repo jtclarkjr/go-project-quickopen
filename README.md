@@ -1,6 +1,6 @@
 # Project Quick open
 
-Quick open for projects in xcode and vscode. Can also add your own IDE to script
+Quick open for projects in xcode and vscode. Can also add your own IDE to package and script
 
 ## Installation
 
@@ -10,7 +10,32 @@ If needed:
 go mod tidy
 ```
 
-## Usage
+## Usages
+
+### Package
+
+`/quickopen`
+
+```
+package main
+
+import (
+    "fmt"
+    quickopen "github.com/jtclarkjr/go-project-quickopen/quickopen"
+)
+
+func main() {
+    err := projectopener.OpenProject("vscode", "/path/to/your/project")
+    if err != nil {
+        fmt.Printf("Failed to open project: %s\n", err)
+    }
+}
+
+```
+
+### Script
+
+`root`
 
 Two ways to run.
 
