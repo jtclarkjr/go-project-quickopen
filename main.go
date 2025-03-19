@@ -8,7 +8,7 @@ import (
 
 func main() {
 	if len(os.Args) != 3 {
-		fmt.Println("Usage: go run main.go <editor> <path_to_project>")
+		fmt.Println("Usage: go run . <editor> <path_to_project>")
 		os.Exit(1)
 	}
 
@@ -21,9 +21,18 @@ func main() {
 		err = openProject("Xcode", projectPath)
 	case "vscode":
 		err = openProject("Visual Studio Code", projectPath)
-	// Add other IDE here
+	case "webstorm":
+		err = openProject("WebStorm", projectPath)
+	case "intellij":
+		err = openProject("IntelliJ IDEA", projectPath)
+	case "goland":
+		err = openProject("GoLand", projectPath)
+	case "cursor":
+		err = openProject("Cursor", projectPath)
+	case "neovim":
+		err = openProject("Neovim", projectPath)
 	default:
-		fmt.Println("Unsupported editor. Use 'xcode' or 'vscode'.")
+		fmt.Println("Unsupported editor. Use 'xcode', 'vscode', 'webstorm', 'intellij', 'goland', 'cursor', or 'neovim'. If you want to add a new editor, clone and modify the code.")
 		os.Exit(1)
 	}
 
