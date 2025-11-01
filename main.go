@@ -25,6 +25,8 @@ func main() {
 		err = openProject("WebStorm", projectPath)
 	case "pycharm":
 		err = openProject("PyCharm", projectPath)
+	case "pycharm-ce":
+		err = openProject("PyCharm CE", projectPath)
 	case "intellij":
 		err = openProject("IntelliJ IDEA", projectPath)
 	case "goland":
