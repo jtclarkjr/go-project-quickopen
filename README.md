@@ -1,69 +1,54 @@
 # Project Quick Open
 
-Quick open for projects in various IDEs, including Xcode, Visual Studio Code, WebStorm, IntelliJ IDEA, GoLand, Cursor, and Neovim. You can also add your own IDE to the package and script.
+Quick open for projects in various IDEs, including Xcode, Visual Studio Code, WebStorm, IntelliJ IDEA, GoLand, and Cursor.
 
 ## Installation
 
-If needed:
+1. Build the binary:
 
 ```bash
-go mod tidy
+go build -o quickopen .
+```
+
+2. Install globally:
+
+```bash
+sudo cp quickopen /usr/local/bin/
 ```
 
 ## Usage
 
-### Package
-
-`/quickopen`
-
-```go
-package main
-
-import (
-    "fmt"
-    quickopen "github.com/jtclarkjr/go-project-quickopen/quickopen"
-)
-
-func main() {
-    err := quickopen.OpenProject("vscode", "/path/to/your/project")
-    if err != nil {
-        fmt.Printf("Failed to open project: %s\n", err)
-    }
-}
+```bash
+quickopen [OPTIONS] [EDITOR] [PATH]
 ```
 
-### Script
+### Options
 
-`root`
+- `-h, --help` - Print help information
+- `-v, --version` - Print version information
+- `list` - List available editors
 
-Two ways to run:
+### Arguments
 
-1. Move the `main` executable file to your user directory (`~/`) or projects directory so you don't have to navigate into this folder to run quick open.
+- `[EDITOR]` - Editor to use (default: vscode)
+- `[PATH]` - Path to open (default: current directory)
 
-Example commands:
+### Examples
 
 ```bash
-./main xcode /path/to/your/project
-./main vscode /path/to/your/project
-./main webstorm /path/to/your/project
-./main intellij /path/to/your/project
-./main goland /path/to/your/project
-./main cursor /path/to/your/project
-./main neovim /path/to/your/project
+quickopen                    # Open current directory in VS Code
+quickopen cursor             # Open current directory in Cursor
+quickopen /path/to/project   # Open path in VS Code
+quickopen cursor ~/project   # Open path in Cursor
+quickopen list               # List available editors
 ```
 
----
+### Available Editors
 
-2. Move the `main.go` file to your user directory (`~/`) or projects directory so you don't have to navigate into this folder to run quick open.
-
-Example commands:
-
-```bash
-go run . xcode /path/to/your/project
-go run . vscode /path/to/your/project
-go run . webstorm /path/to/your/project
-go run . intellij /path/to/your/project
-go run . goland /path/to/your/project
-go run . cursor /path/to/your/project
-go run . neovim /path/to/your/project
-```
+- `xcode` - Xcode
+- `vscode` - Visual Studio Code
+- `webstorm` - WebStorm
+- `pycharm-ce` - PyCharm CE
+- `intellij` - IntelliJ IDEA
+- `goland` - GoLand
+- `cursor` - Cursor
