@@ -3,20 +3,9 @@ package main
 import (
 	"fmt"
 	"os"
-	"os/exec"
+
+	"github.com/jtclarkjr/go-project-quickopen"
 )
-
-const version = "1.0.0"
-
-var editors = map[string]string{
-	"xcode":      "Xcode",
-	"vscode":     "Visual Studio Code",
-	"webstorm":   "WebStorm",
-	"pycharm-ce": "PyCharm CE",
-	"intellij":   "IntelliJ IDEA",
-	"goland":     "GoLand",
-	"cursor":      "Cursor",
-}
 
 func main() {
 	if err := run(); err != nil {
@@ -48,12 +37,11 @@ func run() error {
 
 	editor, path := parseOpenArgs(args)
 
-	editorName, ok := editors[editor]
-	if !ok {
+	if !quickopen.IsValidEditor(editor) {
 		return fmt.Errorf("invalid IDE '%s'. Use 'quickopen list' to see available editors", editor)
 	}
 
-	return openProject(editorName, path)
+	return quickopen.OpenProject(editor, path)
 }
 
 func parseOpenArgs(args []string) (editor, path string) {
@@ -61,7 +49,7 @@ func parseOpenArgs(args []string) (editor, path string) {
 	case 0:
 		return "vscode", "."
 	case 1:
-		if isValidEditor(args[0]) {
+		if quickopen.IsValidEditor(args[0]) {
 			return args[0], "."
 		}
 		return "vscode", args[0]
@@ -70,17 +58,12 @@ func parseOpenArgs(args []string) (editor, path string) {
 	}
 }
 
-func isValidEditor(name string) bool {
-	_, ok := editors[name]
-	return ok
-}
-
 func printVersion() {
-	fmt.Printf("quickopen %s\n", version)
+	fmt.Printf("quickopen %s\n", quickopen.Version)
 }
 
 func printHelp() {
-	fmt.Printf("quickopen %s\n\n", version)
+	fmt.Printf("quickopen %s\n\n", quickopen.Version)
 	fmt.Println("USAGE:")
 	fmt.Println("    quickopen [OPTIONS] [EDITOR] [PATH]")
 	fmt.Println()
@@ -102,13 +85,8 @@ func printHelp() {
 
 func listEditors() {
 	fmt.Println("Available editors:")
-	editorKeys := []string{"xcode", "vscode", "webstorm", "pycharm-ce", "intellij", "goland", "cursor"}
+	editorKeys := quickopen.GetEditorKeys()
 	for _, key := range editorKeys {
-		fmt.Printf("  - %-12s (%s)\n", key, editors[key])
+		fmt.Printf("  - %-12s (%s)\n", key, quickopen.Editors[key])
 	}
-}
-
-func openProject(editorName, path string) error {
-	cmd := exec.Command("open", "-a", editorName, path)
-	return cmd.Run()
 }

@@ -4,16 +4,33 @@ Quick open for projects in various IDEs, including Xcode, Visual Studio Code, We
 
 ## Installation
 
+### As a CLI tool
+
 1. Build the binary:
 
 ```bash
-go build -o quickopen .
+go build -o quickopen ./cmd/quickopen
 ```
 
 2. Install globally:
 
 ```bash
 sudo cp quickopen /usr/local/bin/
+```
+
+### As a Go package
+
+```bash
+go get github.com/jtclarkjr/go-project-quickopen
+```
+
+Then import in your Go code:
+
+```go
+import "github.com/jtclarkjr/go-project-quickopen"
+
+// Use the package
+err := quickopen.OpenProject("vscode", "/path/to/project")
 ```
 
 ## Usage
